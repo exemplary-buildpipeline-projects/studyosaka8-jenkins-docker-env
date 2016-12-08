@@ -1,4 +1,4 @@
-第08回大阪Jenkins勉強会「Jenkins & Docker」デプロイ用サンプルアプリ
+第08回大阪Jenkins勉強会「Jenkins & Docker」環境作成用プロビジョニングAsCode
 ==============================================
 
 ## What's this ?
