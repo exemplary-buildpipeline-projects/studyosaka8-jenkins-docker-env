@@ -1,14 +1,18 @@
 # coding:utf-8
 
 - hosts: all
+  sudo: yes
 
   tasks:
 
     - name: locale setting
-      shell: 'sudo cp -p  /usr/share/zoneinfo/Japan /etc/localtime'
+      shell: 'cp -p  /usr/share/zoneinfo/Japan /etc/localtime'
 
     - name: upgrade all packages
       yum: name=* state=latest
+
+    - name: install common
+      yum: name=git disable_gpg_check=no state=installed
 
     # Docker install
 
@@ -44,12 +48,12 @@
     # install nginx
 
     - name: yum nginx install
-      yum: nginx state=installed
+      yum: name=nginx state=installed disable_gpg_check=no
 
     - name: ngix setting file copy
       copy:
         src: ./resources/nginx_conf.d/basic.conf
-        dest: /etc/nginx/basic.conf
+        dest: /etc/nginx/conf.d/basic.conf
 
     - name: nginx service set
       service: name=nginx enabled=yes state=started
