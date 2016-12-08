@@ -1,0 +1,5 @@
+*.retry
+*.pem
+*.swp
+jenkins-cli.jar
+*.log
