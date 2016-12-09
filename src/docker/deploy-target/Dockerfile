@@ -1,6 +1,6 @@
-MAINTAINER kazuhito_m
-
 FROM ubuntu:16.10
+
+MAINTAINER kazuhito_m
 
 # インストール
 
