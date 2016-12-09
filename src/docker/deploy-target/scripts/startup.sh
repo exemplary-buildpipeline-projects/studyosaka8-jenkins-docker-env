@@ -16,15 +16,15 @@ service mysql restart
 # Dockerfileサイドで「root:rootをパスワードに設定」ってやってるはずなのに…rootをnonpassで通しやがる。TODOや
 
 # mysqlに外から入れるよう設定(二回目以降も権限系だけはふり直す)
-mysql --user=root -e 'CREATE DATABASE IF NOT EXISTS odf_edit_sample;'
-mysql --user=root -e 'GRANT ALL PRIVILEGES ON *.* TO databaseuser@"%.%.%.%" IDENTIFIED BY "databasepassword";'
-mysql --user=root -e 'GRANT ALL PRIVILEGES ON *.* TO databaseuser@"localhost" IDENTIFIED BY "databasepassword";'
-mysql --user=root -e 'GRANT ALL PRIVILEGES ON *.* TO root@"%.%.%.%" IDENTIFIED BY "root";'
-mysql --user=root -e 'GRANT ALL PRIVILEGES ON *.* TO root@"localhost" IDENTIFIED BY "root";'
+mysql --user=root --password=root -e 'CREATE DATABASE IF NOT EXISTS odf_edit_sample;
+  GRANT ALL PRIVILEGES ON *.* TO databaseuser@"%.%.%.%" IDENTIFIED BY "databasepassword";
+  GRANT ALL PRIVILEGES ON *.* TO databaseuser@"localhost" IDENTIFIED BY "databasepassword";
+  GRANT ALL PRIVILEGES ON *.* TO root@"%.%.%.%" IDENTIFIED BY "root";
+  GRANT ALL PRIVILEGES ON *.* TO root@"localhost" IDENTIFIED BY "root";'
 
 # Dockerの外をマウントしているのを期待しているディレクトリ `/tmp/app_import` から、SpringBootのJarを取得する。
 mkdir -p /tmp/deploy
 cp /tmp/app_import/*.jar /tmp/deploy/app.jar
 
-# SpringBootアプリ起動(エンドレス起動兼ねる)
+# SpringBootアプリ起動(エンドレス挙動兼ねる)
 java -jar /tmp/deploy/app.jar
