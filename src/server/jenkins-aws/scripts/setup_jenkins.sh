@@ -19,6 +19,3 @@ curl "$JENKINS_URL/jnlpJars/jenkins-cli.jar" > ./jenkins-cli.jar
 # プラグイン群
 # https://updates.jenkins-ci.org/latest/ から、対応する名前を探し、".hpi"を取り除いたのがプラグイン名。
 java -jar jenkins-cli.jar -s $JENKINS_URL install-plugin $PLUGINS --username $USERNAME --password $PASSWORD
-
-# 再起動
-java -jar jenkins-cli.jar -s $JENKINS_URL safe-restart --username $USERNAME --password $PASSWORD
