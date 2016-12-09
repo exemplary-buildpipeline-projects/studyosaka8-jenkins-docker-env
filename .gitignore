@@ -3,3 +3,4 @@
 *.swp
 jenkins-cli.jar
 *.log
+test_hosts
