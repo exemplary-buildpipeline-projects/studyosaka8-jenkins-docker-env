@@ -4,6 +4,8 @@
 # Base image by https://github.com/cogniteev/docker-oracle-java/blob/master/oracle-java9/Dockerfile
 #
 
+MAINTAINER kazuhito_m
+
 FROM cogniteev/oracle-java:java9
 
 RUN \
