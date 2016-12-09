@@ -5,11 +5,15 @@ node {
   }
 
   stage('Build docker image "Java9 compile env"') {
-    sh "docker build -t oracle-java9-plus - < ./src/docker/java9-plus/Dockerfile"
+    dir('./src/docker/java9-plus') {
+      sh "docker build -t oracle-java9-plus ."
+    }
   }
 
   stage('Build docker image "Deploy target"') {
-    sh "docker build -t deploy-target - < ./src/docker/deploy-target/Dockerfile"
+    dir('./src/docker/deploy-target') {
+      sh "docker build -t deploy-target ."
+    }
   }
 
 }
